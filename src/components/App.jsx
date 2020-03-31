@@ -1,9 +1,11 @@
 import React from 'react';
 
+import DisplayWord from './DisplayWord.jsx';
+
 const App = () => {
     return(
         <div>
-            hello world
+            <DisplayWord />
         </div>
     )
 };
