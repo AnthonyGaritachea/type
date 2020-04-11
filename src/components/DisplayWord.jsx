@@ -3,7 +3,6 @@ import axios from 'axios';
 
 const DisplayWord = () => {    
     const [currentWord, setCurrentWord] = useState(null);
-    const [userInput, setUserInput] = useState('');
 
    useEffect(() => {
        axios.get('/words')
@@ -14,27 +13,6 @@ const DisplayWord = () => {
             .catch(err => console.log(err));
    }, []);
     
-    const handleUserInput = event => {
-        setUserInput(event.target.value);
-    };
-            
-    const compareText = event => {
-        let characterSpanArray = document.querySelectorAll('span'); 
-        const testWord = document.querySelector('.test-word').innerText;
-        let userInputArray = event.target.value.split('');         
-        characterSpanArray.forEach((characterElement, index) => {
-            const userInput = userInputArray[index]        
-            if(userInput == null){
-                characterElement.style.backgroundColor = '';
-            }
-            else if(userInput === characterElement.innerText){
-                characterElement.style.backgroundColor = 'yellow'
-            } else {
-                characterElement.style.backgroundColor = 'red'
-            }
-        })
-    };
-    
     return( 
         <div>
             <div className='test-word'>
@@ -44,7 +22,6 @@ const DisplayWord = () => {
                     )
                 })}
             </div>
-            <input type='text' onChange={handleUserInput} onInput={compareText} value={userInput}/>
         </div>
     )
 };
