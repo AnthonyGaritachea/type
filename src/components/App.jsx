@@ -7,7 +7,6 @@ const App = () => {
     return(
         <div>
             <DisplayWord />
-            <UserInput />
         </div>
     )
 };

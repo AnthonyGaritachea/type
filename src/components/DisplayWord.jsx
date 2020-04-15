@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect} from 'react';
 import axios from 'axios';
+
+import UserInput from './UserInput.jsx'
 
 const DisplayWord = () => {    
     const [currentWord, setCurrentWord] = useState(null);
+    const [reRender, setReRender] = useState(false);
 
    useEffect(() => {
        axios.get('/words')
@@ -15,13 +18,14 @@ const DisplayWord = () => {
     
     return( 
         <div>
-            <div className='test-word'>
+           <div className='test-word'>
                 {(currentWord != null) && currentWord[Math.floor(Math.random() * currentWord.length)].split('').map((character, index) => {
                     return (
                         <span key={index}>{character}</span>
                     )
                 })}
             </div>
+            <UserInput reRender={reRender} setReRender={setReRender} />
         </div>
     )
 };

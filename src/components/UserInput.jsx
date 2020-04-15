@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const UserInput = () => {
+const UserInput = ({ reRender, setReRender}) => {
     const [text, setText] = useState('');
 
     const compareText = event => {
@@ -10,6 +10,10 @@ const UserInput = () => {
         
         characterSpanArray.forEach((characterElement, index) => {
             const userInput = userInputArray[index]        
+            if(testWord === event.target.value){
+               setReRender(!reRender);
+               event.target.value = '';
+            }
             if(userInput == null){
                 characterElement.style.backgroundColor = '';
             }
@@ -22,7 +26,9 @@ const UserInput = () => {
     };
 
     return(
-        <input value={text} onChange={e => setText(e.target.value)} onInput={compareText}/>
+        <div>
+            <input value={text} onChange={e => setText(e.target.value)} onInput={compareText}/>
+        </div>
     )
 };
 
