@@ -3,9 +3,15 @@ import axios from 'axios';
 
 import UserInput from './UserInput.jsx'
 
-const DisplayWord = () => {    
+const DisplayWord = ({ difficulty, setShowComponent }) => {    
     const [currentWord, setCurrentWord] = useState(null);
     const [reRender, setReRender] = useState(false);
+
+    useEffect(() => {
+        if(difficulty != null){  
+            setShowComponent(false) 
+        }
+    }, [difficulty])
 
    useEffect(() => {
        axios.get('/words')
@@ -15,7 +21,7 @@ const DisplayWord = () => {
             })
             .catch(err => console.log(err));
    }, []);
-    
+
     return( 
         <div>
            <div className='test-word'>

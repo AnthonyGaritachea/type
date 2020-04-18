@@ -1,12 +1,11 @@
 import React from 'react';
 
-import DisplayWord from './DisplayWord.jsx';
-import UserInput from './UserInput.jsx';
+import SelectDifficulty from './SelectDifficulty.jsx';
 
 const App = () => {
     return(
         <div>
-            <DisplayWord />
+            <SelectDifficulty />
         </div>
     )
 };
