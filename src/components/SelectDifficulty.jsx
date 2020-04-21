@@ -1,13 +1,42 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 import DisplayWord from './DisplayWord.jsx';
 
 const SelectDifficulty = () => {
     const [difficulty, setDifficulty] = useState(null);
     const [showComponent, setShowComponent] = useState(true);
+    const [testWords, setTestWords] = useState(null);
 
-    const handleClick = (event) => {
+    useEffect(() => {
+        console.log(difficulty);
+    }, [difficulty])
+
+    const handleClick = event => {
         setDifficulty(event.target.value);
+        switch (event.target.value) {
+            case 'easy':
+               return axios.get(`/words/${3}/${5}`)
+                    .then(res => {
+                        let data = res.data.map(({ word }) => [word].join(' '));
+                        setTestWords(data)
+                    })
+                    .catch(err => console.log(err));
+            case 'normal':
+               return axios.get(`/words/${6}/${9}`)
+                    .then(res => {
+                        let data = res.data.map(({ word }) => [word].join(' '));
+                        setTestWords(data)
+                    })
+                    .catch(err => console.log(err));
+            case 'hard':
+               return axios.get(`/words/${10}/${15}`)
+                    .then(res => {
+                        let data = res.data.map(({ word }) => [word].join(' '));
+                        setTestWords(data)
+                    })
+                    .catch(err => console.log(err));
+        }
     };
 
     return(
@@ -32,7 +61,12 @@ const SelectDifficulty = () => {
                 </div>
             }
       
-            <DisplayWord difficulty={difficulty} setShowComponent={setShowComponent}/>
+        {(testWords != null) && 
+            <DisplayWord 
+                difficulty={difficulty} 
+                setShowComponent={setShowComponent}     
+                testWords={testWords}
+            />}
         </div>
     );
 
