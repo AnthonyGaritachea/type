@@ -2,7 +2,7 @@ import React, { useState, useEffect} from 'react';
 
 import UserInput from './UserInput.jsx'
 
-const DisplayWord = ({ difficulty, setShowComponent, testWords }) => {    
+const DisplayWord = ({ difficulty, setShowComponent, setShowSpinner, testWords }) => {    
     const [reRender, setReRender] = useState(false);
 
     useEffect(() => {
@@ -10,6 +10,12 @@ const DisplayWord = ({ difficulty, setShowComponent, testWords }) => {
             setShowComponent(false) 
         }
     }, [difficulty]);
+
+    useEffect(() => {
+        if(testWords != null){
+            setShowSpinner(false);
+        }
+    }, [testWords]);
 
     return( 
         <div>

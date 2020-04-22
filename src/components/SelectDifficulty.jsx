@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
+// import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from 'react-loader-spinner';
 
 import DisplayWord from './DisplayWord.jsx';
 
@@ -7,36 +9,37 @@ const SelectDifficulty = () => {
     const [difficulty, setDifficulty] = useState(null);
     const [showComponent, setShowComponent] = useState(true);
     const [testWords, setTestWords] = useState(null);
-
-    useEffect(() => {
-        console.log(difficulty);
-    }, [difficulty])
+    const [showSpinner, setShowSpinner] = useState(false);
 
     const handleClick = event => {
         setDifficulty(event.target.value);
         switch (event.target.value) {
             case 'easy':
-               return axios.get(`/words/${3}/${5}`)
+                axios.get(`/words/${3}/${5}`)
                     .then(res => {
                         let data = res.data.map(({ word }) => [word].join(' '));
                         setTestWords(data)
                     })
                     .catch(err => console.log(err));
+                    break;
             case 'normal':
-               return axios.get(`/words/${6}/${9}`)
+               axios.get(`/words/${6}/${9}`)
                     .then(res => {
                         let data = res.data.map(({ word }) => [word].join(' '));
                         setTestWords(data)
                     })
                     .catch(err => console.log(err));
+                    break;
             case 'hard':
-               return axios.get(`/words/${10}/${15}`)
+               axios.get(`/words/${10}/${15}`)
                     .then(res => {
                         let data = res.data.map(({ word }) => [word].join(' '));
                         setTestWords(data)
                     })
                     .catch(err => console.log(err));
-        }
+                    break;
+        };
+        setShowSpinner(true);
     };
 
     return(
@@ -60,11 +63,20 @@ const SelectDifficulty = () => {
                         </div>
                 </div>
             }
+
+            {showSpinner && <Loader
+                                type="ThreeDots"
+                                color="#00BFFF"
+                                height={100}
+                                width={100} 
+                             />
+            }
       
         {(testWords != null) && 
             <DisplayWord 
                 difficulty={difficulty} 
-                setShowComponent={setShowComponent}     
+                setShowComponent={setShowComponent}
+                setShowSpinner={setShowSpinner}     
                 testWords={testWords}
             />}
         </div>
