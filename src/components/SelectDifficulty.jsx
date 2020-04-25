@@ -4,6 +4,7 @@ import axios from 'axios';
 import Loader from 'react-loader-spinner';
 
 import DisplayWord from './DisplayWord.jsx';
+import CountDown from './CountDown.jsx';
 
 const SelectDifficulty = () => {
     const [difficulty, setDifficulty] = useState(null);
@@ -72,13 +73,16 @@ const SelectDifficulty = () => {
                              />
             }
       
-        {(testWords != null) && 
-            <DisplayWord 
-                difficulty={difficulty} 
-                setShowComponent={setShowComponent}
-                setShowSpinner={setShowSpinner}     
-                testWords={testWords}
-            />}
+        {(testWords != null) &&
+            <div>
+                <CountDown />
+                <DisplayWord 
+                    difficulty={difficulty} 
+                    setShowComponent={setShowComponent}
+                    setShowSpinner={setShowSpinner}     
+                    testWords={testWords}
+                />
+            </div>}
         </div>
     );
 
