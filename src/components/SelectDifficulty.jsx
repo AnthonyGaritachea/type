@@ -11,6 +11,11 @@ const SelectDifficulty = () => {
     const [showComponent, setShowComponent] = useState(true);
     const [testWords, setTestWords] = useState(null);
     const [showSpinner, setShowSpinner] = useState(false);
+    const [timerCallback, setTimerCallback] = useState(null);
+
+    const timeCallback = count => {
+       setTimerCallback(count);
+    };
 
     const handleClick = event => {
         setDifficulty(event.target.value);
@@ -75,12 +80,13 @@ const SelectDifficulty = () => {
       
         {(testWords != null) &&
             <div>
-                <CountDown />
+                <CountDown timeCallback={timeCallback}/> {/* timeCallback not in props */}
                 <DisplayWord 
                     difficulty={difficulty} 
                     setShowComponent={setShowComponent}
                     setShowSpinner={setShowSpinner}     
                     testWords={testWords}
+                    timerCallback={timerCallback}
                 />
             </div>}
         </div>

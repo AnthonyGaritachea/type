@@ -1,8 +1,8 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect, useMemo} from 'react';
 
-import UserInput from './UserInput.jsx'
+import UserInput from './UserInput.jsx';
 
-const DisplayWord = ({ difficulty, setShowComponent, setShowSpinner, testWords }) => {    
+const DisplayWord = ({ difficulty, setShowComponent, setShowSpinner, testWords, timerCallback }) => {    
     const [reRender, setReRender] = useState(false);
 
     useEffect(() => {
@@ -17,16 +17,26 @@ const DisplayWord = ({ difficulty, setShowComponent, setShowSpinner, testWords }
         }
     }, [testWords]);
 
+    const randomWords = () => {
+        return testWords[Math.floor(Math.random() * testWords.length)].split('').map((character, index) => {
+            return (
+                <span key={index}>{character}</span>
+            )
+        });
+    };
+
+    const randomWordsMemo = useMemo(() => randomWords(), [reRender]);
+
     return( 
         <div>
            <div className='test-word'>
-                {(testWords != null) && testWords[Math.floor(Math.random() * testWords.length)].split('').map((character, index) => {
-                    return (
-                        <span key={index}>{character}</span>
-                    )
-                })}
+              {randomWordsMemo}
             </div>
-            <UserInput reRender={reRender} setReRender={setReRender} />
+            <UserInput 
+                reRender={reRender} 
+                setReRender={setReRender} 
+                timerCallback={timerCallback} 
+             />
         </div>
     )
 };

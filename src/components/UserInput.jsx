@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const UserInput = ({ reRender, setReRender}) => {
+const UserInput = ({ reRender, setReRender, timerCallback}) => {
     const [text, setText] = useState('');
+    const [correct, setCorrect] = useState(0);
 
     const compareText = event => {
         let characterSpanArray = document.querySelectorAll('span'); 
@@ -11,6 +12,7 @@ const UserInput = ({ reRender, setReRender}) => {
         characterSpanArray.forEach((characterElement, index) => {
             const userInput = userInputArray[index]        
             if(testWord === event.target.value){
+               setCorrect(correct + 1); 
                setReRender(!reRender);
                event.target.value = '';
             }
@@ -27,7 +29,7 @@ const UserInput = ({ reRender, setReRender}) => {
 
     return(
         <div>
-            <input value={text} onChange={e => setText(e.target.value)} onInput={compareText}/>
+            <input value={text} onChange={e => setText(e.target.value)} onInput={compareText} />
         </div>
     )
 };

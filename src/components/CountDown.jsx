@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { Line } from 'rc-progress';
 
-const CountDown = () => {
+const CountDown = ({ timeCallback }) => {
     const [timer, setTimer] = useState(30);
     const [startTimer, setStartTimer] = useState(false)
 
    useEffect(() => {
-       console.log(timer)
+    timeCallback(timer)
    }, [timer]);
 
     // countdown to start
@@ -42,6 +43,7 @@ const CountDown = () => {
         <div>
             <h1>Timer: {timer}</h1>
             {(timer === 30) && <button onClick={start}>Start</button>}
+            <Line percent={timer} strokeWidth='1' strokeColor='#6da4fc' trailColor='#FFFFFF' /> 
          </div>
     );
 };
