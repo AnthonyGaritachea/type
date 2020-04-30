@@ -1,9 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const UserInput = ({ reRender, setReRender, timerCallback}) => {
     const [text, setText] = useState('');
     const [correct, setCorrect] = useState(0);
+    const inputRef = useRef(null);
 
+    // focuses on input field and clear's text when games over 
+    useEffect(() => {
+        if(timerCallback < 30){
+            inputRef.current.focus();
+        }
+        if (timerCallback === 0 || timerCallback === -1){
+            setText('');
+        };
+    }, [timerCallback]);
+
+    // compares userinput to test word
     const compareText = event => {
         let characterSpanArray = document.querySelectorAll('span'); 
         let testWord = document.querySelector('.test-word').innerText;
@@ -29,7 +41,13 @@ const UserInput = ({ reRender, setReRender, timerCallback}) => {
 
     return(
         <div>
-            <input value={text} onChange={e => setText(e.target.value)} onInput={compareText} />
+            <input 
+                ref={inputRef}
+                value={text} 
+                onChange={e => setText(e.target.value)} 
+                onInput={compareText} 
+                disabled={(timerCallback < 30) ? false : true}
+            />
         </div>
     )
 };
