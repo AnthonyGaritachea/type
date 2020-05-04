@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Line } from 'rc-progress';
 
-const CountDown = ({ timeCallback }) => {
+import ResultsModal from './ResultsModal.jsx';
+
+const CountDown = ({ timeCallback, correctCallback, setCorrectCallback }) => {
     const [timer, setTimer] = useState(30);
     const [startTimer, setStartTimer] = useState(false)
 
@@ -29,7 +31,7 @@ const CountDown = ({ timeCallback }) => {
             interval = setInterval(() => {
                 setTimer(timer => timer - 1);
                 if(timer <= 0){
-                    setTimer(30);
+                    setTimer(0);
                     setStartTimer(false);
                 };
             }, 1000);
@@ -44,6 +46,13 @@ const CountDown = ({ timeCallback }) => {
             <h1>Timer: {timer}</h1>
             {(timer === 30) && <button onClick={start}>Start</button>}
             <Line percent={timer} strokeWidth='1' strokeColor='#6da4fc' trailColor='#FFFFFF' /> 
+            {(timer <= 0) &&
+                 <ResultsModal 
+                    setTimer={setTimer} 
+                    correctCallback={correctCallback} 
+                    setCorrectCallback={setCorrectCallback}
+                 />
+            }
          </div>
     );
 };

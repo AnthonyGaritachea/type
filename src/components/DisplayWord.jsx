@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo} from 'react';
 
 import UserInput from './UserInput.jsx';
 
-const DisplayWord = ({ difficulty, setShowComponent, setShowSpinner, testWords, timerCallback }) => {    
+const DisplayWord = ({ difficulty, setShowComponent, setShowSpinner, testWords, timerCallback, scoreCallback, correctCallback }) => {    
     const [reRender, setReRender] = useState(false);
 
     useEffect(() => {
@@ -36,6 +36,8 @@ const DisplayWord = ({ difficulty, setShowComponent, setShowSpinner, testWords, 
                 reRender={reRender} 
                 setReRender={setReRender} 
                 timerCallback={timerCallback} 
+                scoreCallback={scoreCallback}
+                correctCallback={correctCallback}
              />
         </div>
     )

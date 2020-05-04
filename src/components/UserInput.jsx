@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-const UserInput = ({ reRender, setReRender, timerCallback}) => {
+const UserInput = ({ reRender, setReRender, timerCallback, scoreCallback, correctCallback}) => {
     const [text, setText] = useState('');
     const [correct, setCorrect] = useState(0);
     const inputRef = useRef(null);
@@ -14,6 +14,18 @@ const UserInput = ({ reRender, setReRender, timerCallback}) => {
             setText('');
         };
     }, [timerCallback]);
+
+    // updates parent state with child state
+    useEffect(() => {
+        scoreCallback(correct);
+    }, [correct]);
+
+    // keeps parent state in sync whith child state
+    useEffect(() => {
+        if(correctCallback === 0){
+            setCorrect(0);
+        };
+    }, [correctCallback]);
 
     // compares userinput to test word
     const compareText = event => {
@@ -49,6 +61,7 @@ const UserInput = ({ reRender, setReRender, timerCallback}) => {
                 disabled={(timerCallback < 30) ? false : true}
             />
         </div>
+
     )
 };
 
