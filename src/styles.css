@@ -1,0 +1,65 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: url(../images/blue.jpeg);
+    background-position: 27% 16%;
+    font-family: 'DM Mono', monospace;
+}
+
+/* SelectDifficulty Component */
+
+.select-difficulty {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 75px;
+    text-align: center;
+}
+
+.button-container {
+    margin: 40px 0;
+}
+
+.difficulty-button {
+    font-family: inherit;
+    background: rgba(255,255,255, 0.5);
+    border-radius: 25px;
+    border: none;
+    width: 90%;
+    max-width: 330px;
+    padding: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+.difficulty {
+    font-size: 45px;
+}
+
+.difficulty-info {
+    font-size: 17px;
+    padding: 7px;
+}
+
+.loading-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@media screen and (min-width: 1000px){
+    .flex-container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .select-difficulty {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -85%);
+    }
+}

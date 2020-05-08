@@ -23,8 +23,8 @@ const SelectDifficulty = () => {
     };
 
     const handleClick = event => {
-        setDifficulty(event.target.value);
-        switch (event.target.value) {
+        setDifficulty(event.currentTarget.value);
+        switch (event.currentTarget.value) {
             case 'easy':
                 axios.get(`/words/${3}/${5}`)
                     .then(res => {
@@ -58,29 +58,30 @@ const SelectDifficulty = () => {
             {showComponent && 
                 <div className='select-difficulty'>
                     <h1>Select a difficulty</h1>
-                        <div>
-                            <button value='easy' onClick={handleClick}>Easy</button>
-                            <label style={{display: 'block'}}>returns words with 3-5 characters in length</label>
+                    <div className='flex-container'>
+                        <div className='button-container'>
+                            <button value='easy' className='difficulty-button'  onClick={handleClick}><span className='difficulty'>Easy</span><p className='difficulty-info'>retuns words with 3-5 characters</p></button>
                         </div>
 
-                        <div>
-                            <button value='normal' onClick={handleClick}>Normal</button>
-                            <label style={{display: 'block'}}>returns words with 6-9 characters in length</label>
+                        <div className='button-container'>
+                            <button className='difficulty-button' value='normal' onClick={handleClick}><span className='difficulty'>Normal</span><p className='difficulty-info'>retuns words with 6-9 characters</p></button>
                         </div>
 
-                        <div>
-                            <button value='hard' onClick={handleClick}>Hard</button>
-                            <label style={{display: 'block'}}>returns words with 10-15 characters in length</label>
+                        <div className='button-container'>
+                            <button className='difficulty-button' value='hard' onClick={handleClick}><span className='difficulty'>Hard</span><p className='difficulty-info'>retuns words with 10-15 characters</p></button>
                         </div>
+                    </div>
                 </div>
             }
 
-            {showSpinner && <Loader
-                                type="ThreeDots"
-                                color="#00BFFF"
-                                height={100}
-                                width={100} 
-                             />
+            {showSpinner && <div className='loading-spinner'>
+                                <Loader
+                                    type="ThreeDots"
+                                    color="#00BFFF"
+                                    height={300}
+                                    width={300} 
+                                />
+                             </div>
             }
       
         {(testWords != null) &&

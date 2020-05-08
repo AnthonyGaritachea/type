@@ -20,7 +20,7 @@ const UserInput = ({ reRender, setReRender, timerCallback, scoreCallback, correc
         scoreCallback(correct);
     }, [correct]);
 
-    // keeps parent state in sync whith child state
+    // keeps child state in sync whith parent state
     useEffect(() => {
         if(correctCallback === 0){
             setCorrect(0);
