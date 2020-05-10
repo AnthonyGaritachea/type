@@ -42,10 +42,13 @@ const CountDown = ({ timeCallback, correctCallback, setCorrectCallback }) => {
     }, [timer, startTimer]);
 
     return(
-        <div>
-            <h1>Timer: {timer}</h1>
-            {(timer === 30) && <button onClick={start}>Start</button>}
-            <Line percent={timer} strokeWidth='1' strokeColor='#6da4fc' trailColor='#FFFFFF' /> 
+        <div className='count-down-container'>
+            <h1 className='timer'>Timer: {timer}</h1>
+            {(timer === 30 && <div className='dark-overlay'></div>)}
+            {(timer === 30) && <button className='start-button' onClick={start}>Start</button>}
+            <div className='progress-bar-container'>
+                    <Line className='progress-bar' percent={timer} strokeWidth='1' strokeColor='#00FF92' trailColor=''/> 
+            </div>
             {(timer <= 0) &&
                  <ResultsModal 
                     setTimer={setTimer} 

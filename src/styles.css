@@ -7,6 +7,7 @@ body {
     background: url(../images/blue.jpeg);
     background-position: 27% 16%;
     font-family: 'DM Mono', monospace;
+    overflow-x: hidden;
 }
 
 /* SelectDifficulty Component */
@@ -63,3 +64,73 @@ body {
         transform: translate(-50%, -85%);
     }
 }
+
+/* CountDown Component */ 
+.count-down-container {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 110px;
+    text-align: center;
+}
+
+.timer {
+    font-size: 55px;
+}
+
+.dark-overlay {
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0, 0.7);
+}
+
+.start-button {
+    font-family: inherit;
+    font-size: 40px;
+    padding: 10px;
+    border-radius: 20px;
+    outline: none;
+    cursor: pointer;
+    position: absolute;
+    z-index: 5;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -100%);
+}
+
+.progress-bar {
+    position: absolute;
+    left: 35%;
+}
+
+/* DisplayWord Component */
+.test-word-container {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 50px;
+    text-align: center;
+    font-size: 55px;
+}
+
+/* UserInput Component */
+.user-input-container {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 5px;
+    text-align: center;
+}
+
+.user-input {
+    font-family: inherit;
+    background: transparent;
+    outline: none;
+    border: 2px solid white;
+    border-radius: 25px;
+    font-size: 40px;
+    padding: 10px;
+}   

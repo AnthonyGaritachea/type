@@ -29,7 +29,7 @@ const DisplayWord = ({ difficulty, setShowComponent, setShowSpinner, testWords, 
 
     return( 
         <div>
-           <div className='test-word'>
+           <div className='test-word-container'>
               {randomWordsMemo}
             </div>
             <UserInput 

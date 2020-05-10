@@ -30,7 +30,7 @@ const UserInput = ({ reRender, setReRender, timerCallback, scoreCallback, correc
     // compares userinput to test word
     const compareText = event => {
         let characterSpanArray = document.querySelectorAll('span'); 
-        let testWord = document.querySelector('.test-word').innerText;
+        let testWord = document.querySelector('.test-word-container').innerText;
         let userInputArray = event.target.value.split('');         
         
         characterSpanArray.forEach((characterElement, index) => {
@@ -52,8 +52,9 @@ const UserInput = ({ reRender, setReRender, timerCallback, scoreCallback, correc
     };
 
     return(
-        <div>
+        <div className='user-input-container'>
             <input 
+                className='user-input'
                 ref={inputRef}
                 value={text} 
                 onChange={e => setText(e.target.value)} 
