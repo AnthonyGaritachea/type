@@ -3,7 +3,7 @@ import { Line } from 'rc-progress';
 
 import ResultsModal from './ResultsModal.jsx';
 
-const CountDown = ({ timeCallback, correctCallback, setCorrectCallback }) => {
+const CountDown = ({ timeCallback, correctCallback, setCorrectCallback, setDifficulty, setShowComponent, setTestWords }) => {
     const [timer, setTimer] = useState(30);
     const [startTimer, setStartTimer] = useState(false)
 
@@ -54,6 +54,9 @@ const CountDown = ({ timeCallback, correctCallback, setCorrectCallback }) => {
                     setTimer={setTimer} 
                     correctCallback={correctCallback} 
                     setCorrectCallback={setCorrectCallback}
+                    setDifficulty={setDifficulty}
+                    setShowComponent={setShowComponent}
+                    setTestWords={setTestWords}
                  />
             }
          </div>

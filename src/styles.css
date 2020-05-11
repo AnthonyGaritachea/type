@@ -134,3 +134,55 @@ body {
     font-size: 40px;
     padding: 10px;
 }   
+
+.correct {
+    color: #00FF92;
+}
+
+.incorrect {
+    color: rgb(250, 69, 90);
+}
+
+/* ResultsModal Component */
+
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    background-color: white;
+    border-radius: 20px;
+    padding: 25px;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.results-container h1:first-of-type {
+    text-align: center;
+}
+
+.results-button-container {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.modal-button {
+    background-color: #00BFFF;
+    color: white;
+    outline: none;
+    border: none;
+    padding: 12px;
+    border-radius: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
+}

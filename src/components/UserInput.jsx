@@ -27,6 +27,14 @@ const UserInput = ({ reRender, setReRender, timerCallback, scoreCallback, correc
         };
     }, [correctCallback]);
 
+    // clears test word of any classNames before game starts
+    useEffect(() => {
+        if(timerCallback === 30){
+            Array.from(document.querySelectorAll('span'))
+                 .forEach(e => e.removeAttribute('class'));
+        }
+    }, [timerCallback]);
+
     // compares userinput to test word
     const compareText = event => {
         let characterSpanArray = document.querySelectorAll('span'); 
@@ -36,17 +44,21 @@ const UserInput = ({ reRender, setReRender, timerCallback, scoreCallback, correc
         characterSpanArray.forEach((characterElement, index) => {
             const userInput = userInputArray[index]        
             if(testWord === event.target.value){
-               setCorrect(correct + 1); 
+               setCorrect(correct + 1);
                setReRender(!reRender);
                event.target.value = '';
             }
-            if(userInput == null){
-                characterElement.style.backgroundColor = '';
+            else if(event.target.value == ''){
+                Array.from(document.querySelectorAll('span'))
+                    .forEach(e => e.removeAttribute('class'));
+            }
+            else if(userInput == null){
+                characterElement.removeAttribute('class');
             }
             else if(userInput === characterElement.innerText){
-                characterElement.style.backgroundColor = 'yellow'
+                characterElement.classList.add('correct');
             } else {
-                characterElement.style.backgroundColor = 'red'
+                characterElement.classList.add('incorrect');
             }
         })
     };

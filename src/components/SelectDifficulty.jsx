@@ -90,6 +90,9 @@ const SelectDifficulty = () => {
                     timeCallback={timeCallback}
                     correctCallback={correctCallback}
                     setCorrectCallback={setCorrectCallback}
+                    setDifficulty={setDifficulty}
+                    setShowComponent={setShowComponent}
+                    setTestWords={setTestWords}
                  /> 
                 <DisplayWord 
                     difficulty={difficulty} 

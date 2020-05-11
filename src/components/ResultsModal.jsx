@@ -3,7 +3,7 @@ import Modal from 'react-modal';
 
 Modal.setAppElement('#root');
 
-const ResultsModal = ( { setTimer, correctCallback, setCorrectCallback }) => {
+const ResultsModal = ( { setTimer, correctCallback, setCorrectCallback, setDifficulty, setShowComponent, setTestWords }) => {
     const [isOpen, setIsOpen] = useState(true);
 
     const openModal = () => {
@@ -15,14 +15,28 @@ const ResultsModal = ( { setTimer, correctCallback, setCorrectCallback }) => {
         setCorrectCallback(0);
     };
 
+    const changeDifficulty = () => {
+        setDifficulty(null);
+        setShowComponent(true);
+        setTestWords(null);
+    };
+
     return(
         <div>
             <Modal
+                className='modal'
+                overlayClassName='overlay'
                 isOpen={isOpen}
                 onRequestClose={closeModal}
             >
-            <h1>Game Over!!!</h1>
-            <h1>Your Score: {correctCallback}</h1>
+            <div className='results-container'>
+                <h1>Game Over!!!</h1>
+                <h1>Score: {correctCallback}</h1>
+                <div className='results-button-container'>
+                    <button className='modal-button' onClick={closeModal}>retry</button>
+                    <button className='modal-button'onClick={changeDifficulty}>change difficulty</button>
+                </div>
+            </div>
             </Modal>
         </div>
     )
