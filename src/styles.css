@@ -28,11 +28,18 @@ body {
     background: rgba(255,255,255, 0.5);
     border-radius: 25px;
     border: none;
+    outline: none;
     width: 90%;
     max-width: 330px;
     padding: 10px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
     cursor: pointer;
+    transition: all 0.8s;
+}
+
+.difficulty-button:hover {
+    transform: translateY(-10px);
+    box-shadow: 2px 7px 12px rgba(0, 0, 0, 0.3);
 }
 
 .difficulty {
@@ -93,7 +100,7 @@ body {
     font-family: inherit;
     font-size: 40px;
     padding: 10px;
-    border-radius: 20px;
+    border-radius: 25px;
     outline: none;
     cursor: pointer;
     position: absolute;
@@ -103,8 +110,14 @@ body {
     transform: translate(-50%, -100%);
 }
 
+.progress-bar-container {
+    position: relative;
+    overflow-x: hidden;
+}
+
 .progress-bar {
-    position: absolute;
+    position: relative;
+    top: 0%;
     left: 35%;
 }
 
@@ -114,7 +127,13 @@ body {
     margin: 0 auto;
     margin-top: 50px;
     text-align: center;
-    font-size: 55px;
+    font-size: 40px;
+}
+
+@media screen and (min-width: 540px ) {
+    .test-word-container {
+        font-size: 55px;
+    }
 }
 
 /* UserInput Component */
@@ -131,8 +150,10 @@ body {
     outline: none;
     border: 2px solid white;
     border-radius: 25px;
-    font-size: 40px;
+    font-size: 25px;
     padding: 10px;
+    width: 80%;
+    max-width: 600px;
 }   
 
 .correct {
@@ -141,6 +162,12 @@ body {
 
 .incorrect {
     color: rgb(250, 69, 90);
+}
+
+@media screen and (min-width: 590px) {
+    .user-input {
+        font-size: 40px;
+    }
 }
 
 /* ResultsModal Component */
@@ -169,13 +196,23 @@ body {
     text-align: center;
 }
 
+.game-score {
+    margin: 20px 0;
+}
+
 .results-button-container {
     margin-top: 10px;
-    display: flex;
-    justify-content: space-around;
+    text-align: center;
+}
+
+.modal-button-container {
+    max-width: 280px;
+    margin: 0 auto;
 }
 
 .modal-button {
+    margin: 10px;
+    width: 90%;
     background-color: #00BFFF;
     color: white;
     outline: none;
@@ -185,4 +222,16 @@ body {
     font-size: 20px;
     cursor: pointer;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.5);
+    transition: all .5s
+}
+
+.modal-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 7px 12px rgba(0, 0, 0, 0.3);
+}
+
+@media screen and (min-width: 650px) {
+    .results-button-container {
+        display: flex;
+    }
 }

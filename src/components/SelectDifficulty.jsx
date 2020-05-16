@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 // import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from 'react-loader-spinner';
+import { gsap } from 'gsap';
 
 import DisplayWord from './DisplayWord.jsx';
 import CountDown from './CountDown.jsx';
@@ -13,6 +14,13 @@ const SelectDifficulty = () => {
     const [showSpinner, setShowSpinner] = useState(false);
     const [timerCallback, setTimerCallback] = useState(null);
     const [correctCallback, setCorrectCallback] = useState(0);
+
+    // GSAP
+    useEffect(() => {
+        let tl = gsap.timeline();
+        tl.from('.select-header', { opacity: 0, x: 30, duration: 1.2})
+          .from('.button-container', { opacity: 0, y: 50, duration: 1, stagger: 0.5});
+    }, []);
 
     const timeCallback = count => {
        setTimerCallback(count);
@@ -57,7 +65,7 @@ const SelectDifficulty = () => {
         <div>
             {showComponent && 
                 <div className='select-difficulty'>
-                    <h1>Select a difficulty</h1>
+                    <h1 className='select-header'>Select a difficulty</h1>
                     <div className='flex-container'>
                         <div className='button-container'>
                             <button value='easy' className='difficulty-button'  onClick={handleClick}><span className='difficulty'>Easy</span><p className='difficulty-info'>retuns words with 3-5 characters</p></button>

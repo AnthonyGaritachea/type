@@ -31,10 +31,14 @@ const ResultsModal = ( { setTimer, correctCallback, setCorrectCallback, setDiffi
             >
             <div className='results-container'>
                 <h1>Game Over!!!</h1>
-                <h1>Score: {correctCallback}</h1>
+                <h1 className='game-score'>Score: {correctCallback}</h1>
                 <div className='results-button-container'>
-                    <button className='modal-button' onClick={closeModal}>retry</button>
-                    <button className='modal-button'onClick={changeDifficulty}>change difficulty</button>
+                    <div className='modal-button-container'>
+                        <button className='modal-button' onClick={closeModal}>retry</button>
+                    </div>
+                    <div className='modal-button-container'>
+                        <button className='modal-button'onClick={changeDifficulty}>change difficulty</button>
+                    </div>
                 </div>
             </div>
             </Modal>

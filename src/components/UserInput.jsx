@@ -71,7 +71,7 @@ const UserInput = ({ reRender, setReRender, timerCallback, scoreCallback, correc
                 value={text} 
                 onChange={e => setText(e.target.value)} 
                 onInput={compareText} 
-                disabled={(timerCallback < 30) ? false : true}
+                disabled={(timerCallback === 0 || timerCallback === 30) ? true : false}
             />
         </div>
 

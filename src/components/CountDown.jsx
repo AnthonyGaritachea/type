@@ -47,7 +47,7 @@ const CountDown = ({ timeCallback, correctCallback, setCorrectCallback, setDiffi
             {(timer === 30 && <div className='dark-overlay'></div>)}
             {(timer === 30) && <button className='start-button' onClick={start}>Start</button>}
             <div className='progress-bar-container'>
-                    <Line className='progress-bar' percent={timer} strokeWidth='1' strokeColor='#00FF92' trailColor=''/> 
+                    <Line className='progress-bar' percent={timer} strokeWidth={(document.body.clientWidth <= 400) ? '4' : '1'} strokeColor='#00FF92' trailWidth='0' /> 
             </div>
             {(timer <= 0) &&
                  <ResultsModal 

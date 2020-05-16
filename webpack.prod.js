@@ -1,12 +1,18 @@
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
+    mode: 'production',
     entry: './src/index.js',
     output: {
         filename: 'bundle.js',
         path: path.join(__dirname, '/dist')
     },
-
+    plugins: [
+        new MiniCssExtractPlugin({
+            filename: 'styles.css'
+        })
+    ],
     module: {
         rules: [
             {
@@ -15,18 +21,14 @@ module.exports = {
                 exclude: /node_modules/
             },
             {
-                loader: ['style-loader', 'css-loader'],
-                test: /\.css$/
-            },
-            {
                 loader: 'file-loader',
                 test: /\.jpeg$/
+            },
+            {
+                test: /\.css$/i,
+                use: [MiniCssExtractPlugin.loader, 'css-loader']
             }
         ]
     },
-
-    devtool: 'cheap-module-eval-source-map',
-    devServer: {
-        contentBase: path.join(__dirname, 'public')
-    }
+    devtool: 'source-map'
 }
